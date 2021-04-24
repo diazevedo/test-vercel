@@ -52,7 +52,10 @@ const upload = multer({
 
 app.get("/", (req, res) => {
   res.setHeader("Access-Control-Allow-Credentials", `true`);
-  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader(
+    "Access-Control-Allow-Origin",
+    "https://file-uploader-diazevedo.vercel.app"
+  );
 
   gfs.find().toArray((err, files) => {
     // check if files
@@ -68,7 +71,10 @@ app.get("/", (req, res) => {
 
 app.get("/files/:filename", async (req, res) => {
   res.setHeader("Access-Control-Allow-Credentials", `true`);
-  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader(
+    "Access-Control-Allow-Origin",
+    "https://file-uploader-diazevedo.vercel.app"
+  );
 
   gfs
     .find({
@@ -87,7 +93,10 @@ app.get("/files/:filename", async (req, res) => {
 
 app.post("/files", upload.single("file"), (req, res) => {
   res.setHeader("Access-Control-Allow-Credentials", `true`);
-  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader(
+    "Access-Control-Allow-Origin",
+    "https://file-uploader-diazevedo.vercel.app"
+  );
 
   res.status(201).json({
     file: req.file,
