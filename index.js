@@ -8,25 +8,25 @@ const multer = require("multer");
 const GridFsStorage = require("multer-gridfs-storage");
 
 const app = express();
-app.use(function (req, res, next) {
-  /*var err = new Error('Not Found');
-   err.status = 404;
-   next(err);*/
+// app.use(function (req, res, next) {
+//   /*var err = new Error('Not Found');
+//    err.status = 404;
+//    next(err);*/
 
-  // Website you wish to allow to connect
-  res.setHeader("Access-Control-Allow-Origin", "*");
+//   // Website you wish to allow to connect
+//   res.setHeader("Access-Control-Allow-Origin", "*");
 
-  // Request methods you wish to allow
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "GET, POST, OPTIONS, PUT, PATCH, DELETE"
-  );
+//   // Request methods you wish to allow
+//   res.setHeader(
+//     "Access-Control-Allow-Methods",
+//     "GET, POST, OPTIONS, PUT, PATCH, DELETE"
+//   );
 
-  //  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//   //  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 
-  // Pass to next layer of middleware
-  next();
-});
+//   // Pass to next layer of middleware
+//   next();
+// });
 
 const MONGO_URL =
   "mongodb+srv://file:dap196421@cluster0.flyo0.mongodb.net/file-uploader?retryWrites=true&w=majority";
