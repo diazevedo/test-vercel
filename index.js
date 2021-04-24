@@ -9,6 +9,7 @@ const GridFsStorage = require("multer-gridfs-storage");
 
 const app = express();
 
+// app.use(cors());
 /** test with cors */
 
 const MONGO_URL =
@@ -82,6 +83,8 @@ app.get("/files/:filename", async (req, res) => {
 });
 
 app.post("/files", upload.single("file"), (req, res) => {
+  res.setHeader("Access-Control-Allow-Credentials", `true`);
+  res.setHeader("Access-Control-Allow-Origin", "*");
   res.status(201).json({
     file: req.file,
   });
