@@ -8,7 +8,7 @@ const multer = require("multer");
 const GridFsStorage = require("multer-gridfs-storage");
 
 const app = express();
-// app.use(cors());
+app.use(cors());
 
 const MONGO_URL =
   "mongodb+srv://file:dap196421@cluster0.flyo0.mongodb.net/file-uploader?retryWrites=true&w=majority";
