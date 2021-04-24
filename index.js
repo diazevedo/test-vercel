@@ -66,11 +66,11 @@ app.get("/", (req, res) => {
 
 app.get("/about", (req, res) => res.send("About Page Route"));
 
-app.post("/files", upload.single("file"), (req, res) => {
-  res.status(201).json({
-    file: req.file,
-  });
-});
+// app.post("/files", upload.single("file"), (req, res) => {
+//   res.status(201).json({
+//     file: req.file,
+//   });
+// });
 
 app.get("/portfolio", (req, res) => res.send("Portfolio Page Route"));
 app.get("/contact", (req, res) => res.send("Contact Page Route"));
