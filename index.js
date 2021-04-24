@@ -8,6 +8,31 @@ const multer = require("multer");
 const GridFsStorage = require("multer-gridfs-storage");
 
 const app = express();
+app.use(function (req, res, next) {
+  /*var err = new Error('Not Found');
+   err.status = 404;
+   next(err);*/
+
+  // Website you wish to allow to connect
+  res.setHeader("Access-Control-Allow-Origin", "*");
+
+  // Request methods you wish to allow
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET, POST, OPTIONS, PUT, PATCH, DELETE"
+  );
+
+  // Request headers you wish to allow
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers,X-Access-Token,XKey,Authorization"
+  );
+
+  //  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
+  // Pass to next layer of middleware
+  next();
+});
 
 const MONGO_URL =
   "mongodb+srv://file:dap196421@cluster0.flyo0.mongodb.net/file-uploader?retryWrites=true&w=majority";
@@ -51,12 +76,6 @@ const upload = multer({
 });
 
 app.get("/", (req, res) => {
-  res.setHeader("Access-Control-Allow-Credentials", `true`);
-  res.setHeader(
-    "Access-Control-Allow-Origin",
-    "https://file-uploader-diazevedo.vercel.app"
-  );
-
   gfs.find().toArray((err, files) => {
     // check if files
     if (!files || files.length === 0) {
@@ -70,12 +89,6 @@ app.get("/", (req, res) => {
 });
 
 app.get("/files/:filename", async (req, res) => {
-  res.setHeader("Access-Control-Allow-Credentials", `true`);
-  res.setHeader(
-    "Access-Control-Allow-Origin",
-    "https://file-uploader-diazevedo.vercel.app"
-  );
-
   gfs
     .find({
       filename: req.params.filename,
@@ -92,12 +105,6 @@ app.get("/files/:filename", async (req, res) => {
 });
 
 app.post("/files", upload.single("file"), (req, res) => {
-  res.setHeader("Access-Control-Allow-Credentials", `true`);
-  res.setHeader(
-    "Access-Control-Allow-Origin",
-    "https://file-uploader-diazevedo.vercel.app"
-  );
-
   res.status(201).json({
     file: req.file,
   });
