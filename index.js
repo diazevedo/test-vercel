@@ -8,6 +8,7 @@ const multer = require("multer");
 const GridFsStorage = require("multer-gridfs-storage");
 
 const app = express();
+// app.use(cors());
 
 const MONGO_URL =
   "mongodb+srv://file:dap196421@cluster0.flyo0.mongodb.net/file-uploader?retryWrites=true&w=majority";
@@ -64,6 +65,13 @@ app.get("/", (req, res) => {
 });
 
 app.get("/about", (req, res) => res.send("About Page Route"));
+
+app.post("/files", upload.single("file"), (req, res) => {
+  res.status(201).json({
+    file: req.file,
+  });
+});
+
 app.get("/portfolio", (req, res) => res.send("Portfolio Page Route"));
 app.get("/contact", (req, res) => res.send("Contact Page Route"));
 const port = process.env.PORT || 3000;
